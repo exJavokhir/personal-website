@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation
+} from 'react-router-dom'
+
+
+import Home from './pages/Home'
+import './assets/styles/main.scss'
+
+import {
+  About,
+  Blog,
+  Resume,
+  Contact,
+  Portofilio
+}from './pages'
+import { AnimatePresence }from 'framer-motion'
+
 
 function App() {
+  // const location = useLocation();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+          <AnimatePresence exitBeforeEnter>
+            <Switch >
+              <Route exact path="/" component={Home}/>
+              <Route path="/about" component={About}/>
+              <Route path="/blog" component={Blog}/>
+              <Route path="/resume" component={Resume}/>
+              <Route path="/portofilio" component={Portofilio}/>
+              <Route path="/contact" component={Contact}/>
+            </Switch>
+          </AnimatePresence>
+        </Router>
     </div>
   );
 }
